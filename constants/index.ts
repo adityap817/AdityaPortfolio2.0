@@ -4,7 +4,7 @@ import { HiRefresh } from "react-icons/hi";
 export const Skill_data = [
     {
       skill_name: "C",
-      Image: "/C.png",
+      Image: "/c.png",
       width: 80,
       height: 80,
     },

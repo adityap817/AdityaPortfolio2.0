@@ -52,7 +52,9 @@ const Navbar = () => {
           <button onClick={toggleMenu} className="text-gray-300">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-          <div className="flex flex-row gap-5 justify-center w-full">
+        </div>
+
+        <div className="flex flex-row gap-5 justify-center md:justify-end w-full md:w-auto">
           {Socials.map((social) => (
             <a href={social.url} key={social.name} target="_blank" rel="noopener noreferrer" > 
             <Image
@@ -67,8 +69,6 @@ const Navbar = () => {
             </a>
           ))}
         </div>
-        </div>
-
 
       </div>
 
