@@ -20,7 +20,7 @@ const Skills = () => {
       <SkillText />
 
       <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-row gap-5 items-center">
+      <div className="flex flex-col md:flex-row gap-5 items-center">
       <h2 className="text-xl font-bold text-white w-1/5">Languages</h2>
       <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
         {Skill_data.map((image, index) => (
@@ -40,7 +40,7 @@ const Skills = () => {
       </div>
 
       <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-row gap-5 items-center">
+      <div className="flex flex-col md:flex-row gap-5 items-center">
       <h2 className="text-xl font-bold text-white w-1/5">Libraries & Frameworks</h2>
       <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
         {Frontend_skill.map((image, index) => (
@@ -60,7 +60,7 @@ const Skills = () => {
       </div>
 
       <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-row gap-5 items-center">
+      <div className="flex flex-col md:flex-row gap-5 items-center">
       <h2 className="text-xl font-bold text-white w-1/5">Databases</h2>
       <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
         {Backend_skill.map((image, index) => (
@@ -80,7 +80,7 @@ const Skills = () => {
       </div>
 
       <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-row gap-5 items-center">
+      <div className="flex flex-col md:flex-row gap-5 items-center">
       <h2 className="text-xl font-bold text-white w-1/5">DevOps Tools</h2>
       <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
         {Full_stack.map((image, index) => (
@@ -100,7 +100,7 @@ const Skills = () => {
       </div>
 
       <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-row gap-5 items-center">
+      <div className="flex flex-col md:flex-row gap-5 items-center">
       <h2 className="text-xl font-bold text-white w-1/5">Cloud Tech.</h2>
       <div className="flex flex-row justify-start flex-wrap gap-5 items-start flex-grow">
         {Other_skill.map((image, index) => (
