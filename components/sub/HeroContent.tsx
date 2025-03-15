@@ -60,7 +60,7 @@ const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px] flex items-center gap-2"
+          className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
                     {company.map((company) => (
                       <Image
@@ -72,7 +72,7 @@ const HeroContent = () => {
                         className="cursor-pointer hover:brightness-75 transition duration-300"
                       />
                     ))}
-                    <span>Ex- Veritas Technologies LLC. </span> <br />
+                    Ex- Veritas Technologies LLC. <br />
                     I&apos;m a Full Stack Software Engineer dedicated to building dynamic websites and software solutions. Explore my projects and skills!
         </motion.p>
 
