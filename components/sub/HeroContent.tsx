@@ -7,7 +7,7 @@ import {
   slideInFromRight,
   slideInFromTop,
 } from "@/utils/motion";
-import { SparklesIcon } from "@heroicons/react/24/solid";
+// import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { TbFileCv } from "react-icons/tb";
 import { SiMinutemailer } from "react-icons/si";
@@ -31,6 +31,7 @@ const HeroContent = () => {
           {/* <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" /> */}
           {school.map((school) => (
                       <Image
+                        key={school.name}
                         src={school.logo}
                         alt={school.name}
                         width={40}
@@ -48,7 +49,7 @@ const HeroContent = () => {
           className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
         >
           <span>
-            Hi👋, I'm
+            Hi👋, I&apos;m
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
               {" "}
               Aditya Patil{" "}
@@ -59,10 +60,11 @@ const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="text-lg text-gray-400 my-5 max-w-[600px] flex items-center gap-2"
         >
                     {company.map((company) => (
                       <Image
+                        key={company.name}
                         src={company.logo}
                         alt={company.name}
                         width={96}
@@ -70,8 +72,8 @@ const HeroContent = () => {
                         className="cursor-pointer hover:brightness-75 transition duration-300"
                       />
                     ))}
-          Ex- Veritas Technologies LLC.  <br />
-          I&apos;m a Full Stack Software Engineer dedicated to building dynamic websites and software solutions. Explore my projects and skills!
+                    <span>Ex- Veritas Technologies LLC. </span> <br />
+                    I&apos;m a Full Stack Software Engineer dedicated to building dynamic websites and software solutions. Explore my projects and skills!
         </motion.p>
 
         <motion.a
