@@ -66,7 +66,7 @@ export const Skill_data = [
     },
     {
       name: "Coding",
-      src: "/coding.png",
+      src: "/lc.png",
       url: "https://leetcode.com/u/adityaa_24/"
     },
     {
