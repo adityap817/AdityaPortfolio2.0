@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 type ProjectCardProps = {
   src: string;
@@ -20,7 +21,17 @@ const ProjectCard = ({
   projectLink = "#",
 }: ProjectCardProps) => (
   <div className={`bg-background shadow-lg p-4 flex flex-col ${cardClassName}`}>
-    <img src={src} alt={title} className={imgClassName} />
+    <div className="relative w-full h-[300px]">
+      <Image
+        src={src}
+        alt={title}
+        fill
+        className={imgClassName}
+        sizes="(max-width: 768px) 100vw, 33vw"
+        style={{ objectFit: "cover", borderRadius: "0.75rem" }}
+        priority={false}
+      />
+    </div>
     <div className="mt-4 flex flex-col flex-1">
       <h2 className={titleClassName}>{title}</h2>
       <div className="mb-4 text-gray-700 dark:text-gray-300">{description}</div>
