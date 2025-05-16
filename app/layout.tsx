@@ -4,6 +4,7 @@ import "./globals.css";
 // import StarsCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
+import FloatingStickyNote from "@/components/sub/FloatingStickyNote";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
         {/* <StarsCanvas /> */}
         <Navbar />
         {children}
+        <FloatingStickyNote />
         <Footer />
       </body>
     </html>
