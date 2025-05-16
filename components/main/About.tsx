@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const specializations = [
   {
@@ -75,7 +76,13 @@ function About() {
               <div className="flex items-center gap-3 relative">
                 <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full absolute -left-4 top-1.5 border-2 border-background dark:border-background" />
                 <div className="w-12 h-8 md:w-16 md:h-10 rounded-lg flex items-center justify-center z-10 bg-transparent">
-                  <img src="/asu.png" alt="ASU" className="w-10 h-6 md:w-14 md:h-8 object-contain" />
+                  <Image
+                    src="/asu.png"
+                    alt="ASU"
+                    width={56}
+                    height={32}
+                    className="w-10 h-6 md:w-14 md:h-8 object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">MS Software Engineering</div>
@@ -86,7 +93,13 @@ function About() {
               <div className="flex items-center gap-3 relative">
                 <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full absolute -left-4 top-1.5 border-2 border-background dark:border-background" />
                 <div className="w-12 h-8 md:w-16 md:h-10 rounded-lg flex items-center justify-center z-10 bg-transparent">
-                  <img src="/sppu.png" alt="Pune University" className="w-10 h-6 md:w-14 md:h-8 object-contain" />
+                  <Image
+                    src="/sppu.png"
+                    alt="Pune University"
+                    width={56}
+                    height={32}
+                    className="w-10 h-6 md:w-14 md:h-8 object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">B.E Computer Engineering</div>
@@ -108,7 +121,13 @@ function About() {
               <div className="flex items-center gap-3 relative">
                 <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full absolute -left-4 top-1.5 border-2 border-background dark:border-background" />
                 <div className="w-12 h-8 md:w-16 md:h-10 rounded-lg flex items-center justify-center z-10 bg-transparent">
-                  <img src="/cohesity.webp" alt="Company 1" className="w-10 h-6 md:w-14 md:h-8 object-contain" />
+                  <Image
+                    src="/cohesity.webp"
+                    alt="Company 1"
+                    width={56}
+                    height={32}
+                    className="w-10 h-6 md:w-14 md:h-8 object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">Cohesity Inc.</div>
@@ -119,7 +138,13 @@ function About() {
               <div className="flex items-center gap-3 relative">
                 <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full absolute -left-4 top-1.5 border-2 border-background dark:border-background" />
                 <div className="w-12 h-8 md:w-16 md:h-10 rounded-lg flex items-center justify-center z-10 bg-transparent">
-                  <img src="/asu.png" alt="ASU" className="w-10 h-6 md:w-14 md:h-8 object-contain" />
+                  <Image
+                    src="/asu.png"
+                    alt="ASU"
+                    width={56}
+                    height={32}
+                    className="w-10 h-6 md:w-14 md:h-8 object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">Arizona State University</div>
@@ -130,7 +155,13 @@ function About() {
               <div className="flex items-center gap-3 relative">
                 <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full absolute -left-4 top-1.5 border-2 border-background dark:border-background" />
                 <div className="w-12 h-8 md:w-16 md:h-10 rounded-lg flex items-center justify-center z-10 bg-transparent">
-                  <img src="/veritas.png" alt="Veritas" className="w-10 h-6 md:w-14 md:h-8 object-contain" />
+                  <Image
+                    src="/veritas.png"
+                    alt="Veritas"
+                    width={56}
+                    height={32}
+                    className="w-10 h-6 md:w-14 md:h-8 object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">Veritas Technologies LLC</div>
