@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa"; // Removed FaPhone
 
 const Footer = () => {
   // Simple form state (no validation for brevity)
@@ -121,9 +121,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-8">
-            <h4 className="text-lg font-semibold text-foreground dark:text-foreground mb-2">Let's collaborate</h4>
+            <h4 className="text-lg font-semibold text-foreground dark:text-foreground mb-2">Let&apos;s collaborate</h4>
             <p className="text-muted-foreground">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+              I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your vision.
             </p>
           </div>
         </div>
