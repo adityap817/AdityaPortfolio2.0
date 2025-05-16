@@ -1,4 +1,3 @@
-
 import {
   Backend_skill,
   Frontend_skill,
@@ -8,117 +7,45 @@ import {
 } from "@/constants";
 import React from "react";
 import SkillDataProvider from "../sub/SkillDataProvider";
-import SkillText from "../sub/SkillText";
+
+const allSkills = [
+  ...Skill_data,
+  ...Frontend_skill,
+  ...Backend_skill,
+  ...Full_stack,
+  ...Other_skill,
+];
 
 const Skills = () => {
   return (
     <section
       id="skills"
-      className="flex flex-col items-center justify-center gap-3 h-full relative overflow-hidden pb-80 py-20"
-      style={{ transform: "scale(0.9" }}
+      className="scroll-mt-[96px] flex flex-col items-center justify-center gap-3 h-full relative overflow-hidden"
     >
-      <SkillText />
-
-      <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-col md:flex-row gap-5 items-center">
-      <h2 className="text-xl font-bold text-white w-1/5">Languages</h2>
-      <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
-        {Skill_data.map((image, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <SkillDataProvider
+      <h1
+        className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-10 mt-0"
+      >
+        Skills
+      </h1>
+      <div className="w-full max-w-5xl mx-auto flex flex-wrap gap-x-5 gap-y-6 px-5">
+        {allSkills.map((skill, index) => (
+          <div
             key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-          <span className="mt-2 text-sm text-white">{image.skill_name}</span> 
+            className="flex items-center bg-gradient-to-r from-purple-500 to-cyan-500/80 rounded-full px-8 py-4 shadow button-primary transition hover:opacity-90"
+            style={{ height: "60px" }}
+          >
+            <SkillDataProvider
+              src={skill.Image}
+              width={40}
+              height={40}
+              index={index}
+            />
+            <span className="ml-4 text-lg text-black dark:text-white font-semibold whitespace-nowrap">
+              {skill.skill_name}
+            </span>
           </div>
         ))}
-        </div>
-        </div>
       </div>
-
-      <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-col md:flex-row gap-5 items-center">
-      <h2 className="text-xl font-bold text-white w-1/5">Libraries & Frameworks</h2>
-      <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
-        {Frontend_skill.map((image, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-          <span className="mt-2 text-sm text-white">{image.skill_name}</span> 
-          </div>
-        ))}
-        </div>
-        </div>
-      </div>
-
-      <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-col md:flex-row gap-5 items-center">
-      <h2 className="text-xl font-bold text-white w-1/5">Databases</h2>
-      <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
-        {Backend_skill.map((image, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-          <span className="mt-2 text-sm text-white">{image.skill_name}</span> 
-          </div>
-        ))}
-        </div>
-        </div>
-      </div>
-
-      <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-col md:flex-row gap-5 items-center">
-      <h2 className="text-xl font-bold text-white w-1/5">DevOps Tools</h2>
-      <div className="flex flex-row justify-around flex-wrap gap-5 items-start flex-grow">
-        {Full_stack.map((image, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-          <span className="mt-2 text-sm text-white">{image.skill_name}</span> 
-          </div>
-        ))}
-        </div>
-        </div>
-      </div>
-
-      <div className="w-full max-w-5xl mx-auto mt-4 px-5">
-      <div className="flex flex-col md:flex-row gap-5 items-center">
-      <h2 className="text-xl font-bold text-white w-1/5">Cloud Tech.</h2>
-      <div className="flex flex-row justify-start flex-wrap gap-5 items-start flex-grow">
-        {Other_skill.map((image, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-          <span className="mt-2 text-sm text-white">{image.skill_name}</span> 
-          </div>
-        ))}
-        </div>
-        </div>
-      </div>
-
       <div className="w-full h-full absolute">
         <div className="w-full h-full z-[-10] opacity-30 absolute flex items-center justify-center bg-cover">
           <video
@@ -128,7 +55,7 @@ const Skills = () => {
             loop
             muted
             autoPlay
-            src="/cards-video.webm"
+            // src="/cards-video.webm"
           />
         </div>
       </div>
