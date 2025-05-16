@@ -5,16 +5,10 @@ import "./globals.css";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "Aditya Patil",
@@ -27,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white dark:bg-[#030014]">
       <body
-        className={`${geistSans.variable} bg-[#030014] overflow-y-scroll overflow-x-hidden`}
+        className={`${geistSans.variable} bg-white dark:bg-[#030014] overflow-y-scroll overflow-x-hidden`}
       >
         {/* <StarsCanvas /> */}
         <Navbar />

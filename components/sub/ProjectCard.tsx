@@ -1,29 +1,29 @@
-import Image from "next/image";
 import React from "react";
 
-interface Props {
-  src: string;
-  title: string;
-  description: string;
-}
-
-const ProjectCard = ({ src, title, description }: Props) => {
-  return (
-    <div className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61]">
-      <Image
-        src={src}
-        alt={title}
-        width={1000}
-        height={1000}
-        className="w-full object-contain"
-      />
-
-      <div className="relative p-4">
-        <h1 className="text-2xl font-semibold text-white">{title}</h1>
-        <p className="mt-2 text-gray-300">{description}</p>
-      </div>
+const ProjectCard = ({
+  src,
+  title,
+  description,
+  imgClassName = "",
+  cardClassName = "",
+  titleClassName = "",
+  projectLink = "#",
+}) => (
+  <div className={`bg-background shadow-lg p-4 flex flex-col ${cardClassName}`}>
+    <img src={src} alt={title} className={imgClassName} />
+    <div className="mt-4 flex flex-col flex-1">
+      <h2 className={titleClassName}>{title}</h2>
+      <p className="mb-4 text-gray-700 dark:text-gray-300">{description}</p>
+      <a
+        href={projectLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-auto text-cyan-600 dark:text-cyan-400 hover:underline font-semibold"
+      >
+        View Project &rarr;
+      </a>
     </div>
-  );
-};
+  </div>
+);
 
 export default ProjectCard;
