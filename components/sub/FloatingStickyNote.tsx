@@ -1,32 +1,26 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { db } from "../../lib/firebase";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
 
-const OWNER_SECRET = "adityasecret";
-
+const OWNER_SECRET = "vaishnavi";
 const defaultNote = `🚀 Working on a new portfolio feature!
 • Portfolio redesign in progress
 • Adding new projects soon!
 `;
 
+const NOTE_DOC_ID = "main-sticky-note";
+
 const FloatingStickyNote = () => {
   const [visible, setVisible] = useState(true);
   const [editing, setEditing] = useState(false);
   const [showSecret, setShowSecret] = useState(false);
-  const [note, setNote] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("stickyNote") || defaultNote;
-    }
-    return defaultNote;
-  });
+  const [note, setNote] = useState<string>(defaultNote);
   const [secret, setSecret] = useState("");
   const [editValue, setEditValue] = useState(note);
 
   // Drag state
-  // Start at right bottom: x = 0, y = 0, but we use translate for smoothness
-  const [position, setPosition] = useState<{ x: number; y: number }>(() => {
-    // Default offset from right and bottom
-    return { x: 0, y: 0 };
-  });
+  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
@@ -36,24 +30,25 @@ const FloatingStickyNote = () => {
     setMounted(true);
   }, []);
 
-  // Paper-like very light yellow grid background for light mode, solid for dark
- let isDark = false;
-  if (mounted && typeof window !== "undefined" && window.matchMedia) {
-    isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  }
-  // Use a more saturated yellow for the sticky note
-  const bgColor = isDark ? "#f3f4f6" : "#FDE047"; // Tailwind yellow-300
-  const borderColor = isDark ? "#d1d5db" : "#facc15"; // Tailwind yellow-400
-  const textColor = isDark ? "#1e293b" : "#7c4700";
-  const pinBg = "radial-gradient(circle at 30% 30%, #fde047 70%, #fbbf24 100%)";
-  const pinBorder = "#fbbf24";
-  const gridBg = isDark
-    ? bgColor
-    : `repeating-linear-gradient(0deg, #FDE047, #FDE047 23px, #bae6fd 24px, #FDE047 25px),
-       repeating-linear-gradient(90deg, #FDE047, #FDE047 23px, #bae6fd 24px, #FDE047 25px)`;
+  // Real-time Firestore sync
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, "notes", NOTE_DOC_ID), (snap) => {
+      if (snap.exists()) setNote(snap.data().text);
+    });
+    return unsub;
+  }, []);
 
+  // Paper-like yellow grid, white background
+  const bgColor = "#fff";
+  const borderColor = "#fef08a"; // light yellow
+  const textColor = "#1e293b";
+  // Small yellow grid (20px squares)
+  const gridBg = `
+    repeating-linear-gradient(0deg, #fff, #fff 19px, #fef08a 20px, #fff 21px),
+    repeating-linear-gradient(90deg, #fff, #fff 19px, #fef08a 20px, #fff 21px)
+  `;
 
-  // Mouse events
+  // Mouse events for dragging
   const onMouseDown = (e: React.MouseEvent) => {
     dragging.current = true;
     offset.current = {
@@ -78,7 +73,7 @@ const FloatingStickyNote = () => {
     document.removeEventListener("mouseup", onMouseUp);
   };
 
-  // Touch events
+  // Touch events for dragging
   const onTouchStart = (e: React.TouchEvent) => {
     dragging.current = true;
     const touch = e.touches[0];
@@ -105,12 +100,16 @@ const FloatingStickyNote = () => {
     document.removeEventListener("touchend", onTouchEnd);
   };
 
-  // Save note to localStorage
-  const saveNote = () => {
-    setNote(editValue);
-    localStorage.setItem("stickyNote", editValue);
-    setEditing(false);
-    setShowSecret(false);
+  // Save note to Firestore
+  const saveNote = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    try {
+      await setDoc(doc(db, "notes", NOTE_DOC_ID), { text: editValue });
+      setEditing(false);
+      setShowSecret(false);
+    } catch (err) {
+      alert("Failed to save: " + (err as Error).message);
+    }
   };
 
   // Only you can see the edit UI if you enter the secret
@@ -118,6 +117,7 @@ const FloatingStickyNote = () => {
     e.preventDefault();
     if (secret === OWNER_SECRET) {
       setEditing(true);
+      setEditValue(note); // Ensure editValue is up to date
       setSecret("");
     } else {
       alert("Wrong secret!");
@@ -132,17 +132,17 @@ const FloatingStickyNote = () => {
       style={{
         right: 32,
         bottom: 32,
-        // Use transform for smooth dragging, default at right-bottom
         transform: `translate(${position.x}px, ${position.y}px) rotate(-2deg)`,
-        cursor: "grab",
+        cursor: dragging.current ? "grabbing" : "grab",
         filter: "drop-shadow(4px 8px 12px rgba(0,0,0,0.18))",
-        userSelect: "none",
+        userSelect: dragging.current ? "none" : "auto",
         transition: dragging.current ? "none" : "box-shadow 0.2s",
+        pointerEvents: "auto",
       }}
       onDoubleClick={() => setShowSecret(true)}
       title="Double-click to edit (owner only)"
     >
-      {/* Pin */}
+      {/* Pin Emoji */}
       <div
         style={{
           position: "absolute",
@@ -150,30 +150,12 @@ const FloatingStickyNote = () => {
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 101,
+          fontSize: "1.7rem",
+          pointerEvents: "none",
         }}
+        aria-hidden="true"
       >
-        <div
-          style={{
-            width: "22px",
-            height: "22px",
-            background: pinBg,
-            borderRadius: "50%",
-            border: `2px solid ${pinBorder}`,
-            boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              width: "6px",
-              height: "6px",
-              background: "#fffde4",
-              borderRadius: "50%",
-            }}
-          />
-        </div>
+        📍
       </div>
       <div
         className="relative shadow-lg p-4 flex flex-col gap-2"
@@ -190,12 +172,12 @@ const FloatingStickyNote = () => {
       >
         <div
           className="flex justify-between items-center mb-1"
-          style={{ cursor: "grab" }}
+          style={{ cursor: dragging.current ? "grabbing" : "grab" }}
           onMouseDown={onMouseDown}
           onTouchStart={onTouchStart}
         >
           <span className="font-bold" style={{ letterSpacing: "0.5px", color: textColor }}>
-            Latest Update
+            Latest Updates 💬
           </span>
           <button
             className="hover:text-red-500 text-lg font-bold ml-2"
@@ -218,7 +200,7 @@ const FloatingStickyNote = () => {
           </button>
         </div>
         {editing ? (
-          <>
+          <form onSubmit={saveNote} className="flex flex-col gap-2">
             <textarea
               className="w-full rounded p-2 text-sm border"
               rows={3}
@@ -233,8 +215,8 @@ const FloatingStickyNote = () => {
               }}
             />
             <button
+              type="submit"
               className="mt-2 px-3 py-1 font-bold rounded hover:bg-yellow-100"
-              onClick={saveNote}
               style={{
                 fontFamily: "'Patrick Hand', 'Comic Sans MS', cursive, sans-serif",
                 background: borderColor,
@@ -243,7 +225,7 @@ const FloatingStickyNote = () => {
             >
               Save
             </button>
-          </>
+          </form>
         ) : (
           <div
             className="text-sm whitespace-pre-line"

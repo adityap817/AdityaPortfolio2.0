@@ -240,6 +240,7 @@ export const Skill_data = [
   ];
   
   export const company  = [
+    
     {
       name: "Veritas",
       logo: "/veritas.png",

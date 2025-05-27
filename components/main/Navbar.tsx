@@ -76,7 +76,7 @@ const Navbar = () => {
           className="h-auto w-auto flex flex-row items-center"
         >
           <span className="font-bold ml-[10px] hidden md:block text-foreground font-mono">
-            Aditya Patil
+            Aditya Patil 
           </span>
         </a>
 

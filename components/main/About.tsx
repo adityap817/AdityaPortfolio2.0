@@ -122,7 +122,7 @@ function About() {
                 <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full absolute -left-4 top-1.5 border-2 border-background dark:border-background" />
                 <div className="w-12 h-8 md:w-16 md:h-10 rounded-lg flex items-center justify-center z-10 bg-transparent">
                   <Image
-                    src="/ap1.png"
+                    src="/cohesity.webp"
                     alt="Company 1"
                     width={56}
                     height={32}
@@ -130,7 +130,7 @@ function About() {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">Soon..</div>
+                  <div className="font-semibold text-foreground dark:text-foreground text-sm md:text-base">Cohesity Inc.</div>
                   <div className="text-xs md:text-sm text-muted-foreground dark:text-muted-foreground">Summer Intern</div>
                   <div className="text-xs text-muted-foreground dark:text-muted-foreground mt-1">2025 - Present</div>
                 </div>
