@@ -66,23 +66,42 @@ const HeroContent = () => {
           </span>
         </motion.div>
 
-        <motion.p
+        <motion.div
           variants={slideInFromLeft(0.8)}
           className="text-base md:text-lg text-gray-700 dark:text-gray-300 my-5 max-w-full md:max-w-[600px] hidden md:block"
         >
-          {company.map((company) => (
-            <Image
-              key={company.name}
-              src={company.logo}
-              alt={company.name}
-              width={96}
-              height={96}
-              className="cursor-pointer hover:brightness-75 transition duration-300"
-            />
-          ))}
-          Ex- Veritas Technologies LLC. <br />
+  <div className="flex flex-row flex-wrap gap-4 mb-2">
+  <Image
+    src="/cohesitylight.png"
+    alt="Cohesity Logo Light"
+    width={96}
+    height={96}
+    className="block dark:hidden cursor-pointer hover:brightness-75 transition duration-300 object-contain -mt-2"
+  />
+  {/* Dark mode logo */}
+  <Image
+    src="/cohesitydark.png"
+    alt="Cohesity Logo Dark"
+    width={96}
+    height={96}
+    className="hidden dark:block cursor-pointer hover:brightness-75 transition duration-300 object-contain -mt-2"
+  />
+    {company.map((company) => (
+      <Image
+        key={company.name + "-2"}
+        src={company.logo}
+        alt={company.name}
+        width={96}
+        height={96}
+        className="cursor-pointer hover:brightness-75 transition duration-300 object-contain"
+      />
+    ))}
+  </div>
+  <span>
+          Cohesity | Ex- Veritas Technologies LLC. <br />
           I&apos;m a Full Stack Software Engineer dedicated to building dynamic websites and software solutions. Explore my projects and skills!
-        </motion.p>
+        </span>
+        </motion.div>
 
         <motion.a
           variants={slideInFromLeft(1)}
